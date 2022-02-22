@@ -1,8 +1,15 @@
 # RL_algos
 
-This repository contains experimental code. The code trains an Actor-Critic Model
-using only visual data (not the states). Hence this method can be more easily extended
-to more complex environments. The environment contains all the necessary dependecies,
+This repository contains experimental code.
+
+__RL4.ipynb__ - This is the code that trains an Actor-Critic Model using only visual 
+data (not the state data). Hence this method can be more easily extended to more
+complex environments. It's file dependencies are core.py, and it writes to /temp.
+
+The rest of the files are just me messing aroung and trying out different codes
+from various authors.
+
+The environment contains all the necessary dependecies,
 but there may be a few unnecessary ones too (but likely not very large ones).
 
 The Actor-Critic model is trained using a GAE policy gradient method, which is an
