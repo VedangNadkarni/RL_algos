@@ -130,3 +130,7 @@ dmypy.json
 
 utils
 vpg
+FromOtherSources
+pytorchRLsample copy.ipynb
+RL2.ipynb
+Test*.gif
