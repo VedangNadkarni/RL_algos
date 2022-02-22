@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 from torch.distributions.normal import Normal
 from torch.distributions.categorical import Categorical
-import torch.functional as F
+import torch.nn.functional as F
 
 
 def combined_shape(length, shape=None):
@@ -67,7 +67,7 @@ class Net(nn.Module):
             self.head_ = nn.Linear(linear_input_size, self.convw * self.convh)
             self.head = nn.Linear(self.convw * self.convh, outputs)
         else:
-            self.head_ = nn.Linear(linear_input_size, outputs)
+            self.head = nn.Linear(linear_input_size, outputs)
         # self.out = F.softmax
 
     # Called with either one element to determine next action, or a batch
@@ -80,10 +80,10 @@ class Net(nn.Module):
         x = F.relu(self.bn1(self.conv1(x)))
         x = F.relu(self.bn2(self.conv2(x)))
         x = F.relu(self.bn3(self.conv3(x)))
-        if self.convw * self.convh > 3 * self.outputsoutputs:
-            return self.head_(F.ReLu(self.head_(x.view(x.size(0), -1))))
+        if self.convw * self.convh > 3 * self.outputs:
+            return self.head(F.relu(self.head_(x.view(x.size(0), -1))))
         else:
-            return self.head_(x.view(x.size(0), -1))
+            return self.head(x.view(x.size(0), -1))
 
 class Actor(nn.Module):
     
